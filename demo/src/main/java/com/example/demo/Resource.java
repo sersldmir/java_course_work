@@ -2,6 +2,8 @@ package com.example.demo;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
@@ -35,15 +37,16 @@ public class Resource {
     private int cost;
 
     @Column(name = "acdate")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String acdate;
 
     @Column(name = "supplier")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "supplier", referencedColumnName = "supid",
     insertable = false, updatable = false)
     @Fetch(FetchMode.JOIN)
-    private Supplier supplier;
+    private Long supplier;
 
 
     protected Resource() {
@@ -99,7 +102,12 @@ public class Resource {
         this.acdate = acdate;
     }
 
-    
-    
+    public Long getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Long supplier) {
+        this.supplier = (supplier);
+    }
 
 }

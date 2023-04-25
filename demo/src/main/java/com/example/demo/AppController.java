@@ -74,7 +74,7 @@ public class AppController {
     }
 
     @RequestMapping("/sup")
-    public String viewRecordPage(Model model, @Param("keyword") String keyword) {
+    public String viewSupPage(Model model, @Param("keyword") String keyword) {
 
         List<Supplier> listSup = service.listAllSup(keyword);
         model.addAttribute("listSup", listSup);
@@ -136,8 +136,8 @@ public class AppController {
         return "redirect:/sup";
     }
 
-    @RequestMapping("/editRes/{id}")
-    public ModelAndView showEditCargoForm(@PathVariable(name = "id") Long id){
+    @RequestMapping("/editRes/{resid}")
+    public ModelAndView showEditResForm(@PathVariable(name = "resid") Long id){
 
         ModelAndView mav = new ModelAndView("edit_res");
         Resource resource = service.getRes(id);
@@ -145,8 +145,8 @@ public class AppController {
         return mav;
     }
 
-    @RequestMapping("/editSup/{id}")
-    public ModelAndView showEditRecordForm(@PathVariable(name = "id") Long id){
+    @RequestMapping("/editSup/{supid}")
+    public ModelAndView showEditSupForm(@PathVariable(name = "supid") Long id){
 
         ModelAndView mav = new ModelAndView("edit_sup");
         Supplier supplier = service.getSup(id);
@@ -154,15 +154,15 @@ public class AppController {
         return mav;
     }
 
-    @RequestMapping("/deleteRes/{id}")
-    public String deleteRes(@PathVariable(name = "id") Long id){
+    @RequestMapping("/deleteRes/{resid}")
+    public String deleteRes(@PathVariable(name = "resid") Long id){
 
         service.deleteRes(id);
         return "redirect:/";
     }
 
-    @RequestMapping("/deleteSup/{id}")
-    public String deleteSup(@PathVariable(name = "id") Long id){
+    @RequestMapping("/deleteSup/{supid}")
+    public String deleteSup(@PathVariable(name = "supid") Long id){
 
         service.deleteSup(id);
         return "redirect:/sup";
