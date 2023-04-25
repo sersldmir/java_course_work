@@ -30,10 +30,7 @@ public class Supplier {
     @OneToMany(fetch=FetchType.LAZY, targetEntity=Resource.class, mappedBy = "resid", orphanRemoval = false)
     private Set<Resource> resources;
 
-    
-
-    protected Supplier() {
-    }
+    protected Supplier() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
