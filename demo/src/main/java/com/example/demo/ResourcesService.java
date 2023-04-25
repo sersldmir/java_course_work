@@ -56,7 +56,7 @@ public class ResourcesService {
         return supKeywordName;
     }
 
-    public String getCargoKeyword() {
+    public String getSupKeyword() {
         return supKeyword;
     }
 
@@ -101,7 +101,7 @@ public class ResourcesService {
         else return repoRes.findAll();
     }
 
-    public List<Supplier> listByRecordCriteria(
+    public List<Supplier> listBySupCriteria(
             String keywordName,
             String keywordPhone,
             String keywordEmail){
