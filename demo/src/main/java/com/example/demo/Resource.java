@@ -23,7 +23,7 @@ public class Resource {
     private Long resid;
 
     @Column(name = "name")
-    private String resname;
+    private String name;
 
     @Column(name = "type")
     private String type;
@@ -59,12 +59,12 @@ public class Resource {
         this.resid = resid;
     }
 
-    public String getResname() {
-        return resname;
+    public String getName() {
+        return name;
     }
 
-    public void setResname(String resname) {
-        this.resname = resname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {

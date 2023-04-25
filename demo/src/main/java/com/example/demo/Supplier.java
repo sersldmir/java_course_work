@@ -19,7 +19,7 @@ public class Supplier {
     private Long supid;
 
     @Column(name = "name")
-    private String supname;
+    private String name;
 
     @Column(name = "phone")
     private String phone;
@@ -41,8 +41,8 @@ public class Supplier {
         return supid;
     }
 
-    public String getSupname() {
-        return supname;
+    public String getName() {
+        return name;
     }
 
     public String getPhone() {
@@ -57,8 +57,8 @@ public class Supplier {
         this.supid = supid;
     }
 
-    public void setSupname(String supname) {
-        this.supname = supname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPhone(String phone) {
