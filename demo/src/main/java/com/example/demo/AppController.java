@@ -3,12 +3,13 @@ package com.example.demo;
 import java.util.List;
 
 import com.example.demo.security.UserInfo;
-// import com.example.demo.security.UserInfoDetailsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -17,19 +18,22 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@EnableMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
 public class AppController {
 
     @Autowired
     private ResourcesService service;
 
+    @GetMapping("/about")
+    public String about(){
+        return "about_page";
+    }
+    
     @GetMapping("/login_page")
     public String login(){
         return "login_page";
     }
-//    @RequestMapping("/new_user")
-//    public String addNewUser(UserInfo userInfo){
-//        return service.addUser(userInfo);
-//    }
+
     @PostMapping("/login_page")
     public String loginSubmit(@RequestParam String username, HttpSession session){
 
@@ -37,6 +41,7 @@ public class AppController {
         session.setAttribute("username", currentUser);
         return "redirect:/";
     }
+
     @PostMapping("/reg")
     public String addNewUser(@ModelAttribute UserInfo userInfo, @RequestParam String name, @RequestParam String roles, HttpSession session) {
 
@@ -45,12 +50,15 @@ public class AppController {
         session.setAttribute("roles", roles);
         return "redirect:/";
     }
+
     @GetMapping("/reg")
     public String register(HttpServletRequest request, HttpServletResponse response) {
 
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "reg_page";
     }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/reg_admin")
     public String addNewUserAdmin(@ModelAttribute UserInfo userInfo, @RequestParam String name, @RequestParam String roles, HttpSession session) {
 
@@ -59,6 +67,8 @@ public class AppController {
         session.setAttribute("roles", roles);
         return "redirect:/";
     }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/reg_admin")
     public String registerAdmin() {
         return "reg_page_admin";
@@ -66,7 +76,6 @@ public class AppController {
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword){
-                                // @PathVariable(name = "supplier") Long supplier) {
 
         List<Resource> listRes = service.listAllRes(keyword);
         List<String> listSups = service.getResSupplier();
@@ -114,6 +123,7 @@ public class AppController {
         return "sup";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @RequestMapping("/newRes")
     public String showNewResForm(Model model){
 
@@ -122,6 +132,8 @@ public class AppController {
         model.addAttribute("suppliers", service.listAllSups());
         return "new_res";
     }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @RequestMapping("/newSup")
     public String showNewRecordForm(Model model){
 
@@ -143,6 +155,7 @@ public class AppController {
         return "redirect:/sup";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @RequestMapping("/editRes/{resid}")
     public ModelAndView showEditResForm(@PathVariable(name = "resid") Long id){
 
@@ -153,6 +166,7 @@ public class AppController {
         return mav;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @RequestMapping("/editSup/{supid}")
     public ModelAndView showEditSupForm(@PathVariable(name = "supid") Long id){
 
@@ -162,6 +176,7 @@ public class AppController {
         return mav;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @RequestMapping("/deleteRes/{resid}")
     public String deleteRes(@PathVariable(name = "resid") Long id){
 
@@ -169,6 +184,7 @@ public class AppController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @RequestMapping("/deleteSup/{supid}")
     public String deleteSup(@PathVariable(name = "supid") Long id){
 
