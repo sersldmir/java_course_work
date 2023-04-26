@@ -25,8 +25,11 @@ public interface ResourceRepository extends JpaRepository<Resource, Long>{
     @Query("SELECT r FROM Resource r JOIN Supplier s WHERE r.acdate LIKE %?1%")
     List<Resource> searchByAcdate(String keyword);
 
-    @Query("SELECT r FROM Resource r JOIN Supplier s WHERE s.supid LIKE ?1")
+    @Query("SELECT r FROM Supplier s, Resource r WHERE r.supplier = s.supid AND s.name LIKE %?1%")
     List<Resource> searchBySupplier(String keyword);
+
+    @Query("SELECT s.name FROM Supplier s, Resource r WHERE r.supplier = s.supid AND s.name LIKE %?1%")
+    List<String> searchSupplierNames(String keyword);
 
     @Query("SELECT s.name FROM Supplier s, Resource r WHERE r.supplier = s.supid ORDER BY r.resid")
     List<String> extractSupplier();

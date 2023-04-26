@@ -78,7 +78,7 @@ public class ResourcesService {
             return repoRes.searchByName(keywordName);
         }
         else if (!StringUtil.isNullOrEmpty(keywordType)){
-            this.resKeywordName = "keywordContent";
+            this.resKeywordName = "keywordType";
             this.resKeyword = keywordType;
             return repoRes.searchByType(keywordType);
         }
@@ -93,12 +93,12 @@ public class ResourcesService {
             return repoRes.searchByCost(keywordCost);
         }
         else if (!StringUtil.isNullOrEmpty(keywordAcdate)){
-            this.resKeywordName = "keywordArrivalCity";
+            this.resKeywordName = "keywordAcDate";
             this.resKeyword = keywordAcdate;
             return repoRes.searchByAcdate(keywordAcdate);
         }
         else if (!StringUtil.isNullOrEmpty(keywordSupplier)){
-            this.resKeywordName = "keywordArrivalDate";
+            this.resKeywordName = "keywordSupplier";
             this.resKeyword = keywordSupplier;
             return repoRes.searchBySupplier(keywordSupplier);
         }
@@ -164,6 +164,17 @@ public class ResourcesService {
 
     public List<String> getResSupplier(){
         return repoRes.extractSupplier();
+    }
+
+    public List<String> getSupplierNames(String keywordSup){
+        if (!StringUtil.isNullOrEmpty(keywordSup)){
+            this.resKeywordName = "keywordSup";
+            this.resKeyword = keywordSup;
+            return repoRes.searchSupplierNames(keywordSup);
+        }
+        else{
+            return repoRes.extractSupplier();
+        }
     }
 
 
