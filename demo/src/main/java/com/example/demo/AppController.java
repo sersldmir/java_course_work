@@ -100,9 +100,10 @@ public class AppController {
     @RequestMapping("/findSup")
     public String searchRecord(Model model, @Param("keywordName") String keywordName,
                                @Param("keywordPhone") String keywordPhone,
-                               @Param("keywordEmail") String keywordEmail){
+                               @Param("keywordEmail") String keywordEmail,
+                               @Param("keywordId") String keywordId){
 
-        List<Supplier> listSupByCriteria = service.listBySupCriteria(keywordName, keywordPhone, keywordEmail);
+        List<Supplier> listSupByCriteria = service.listBySupCriteria(keywordId, keywordName, keywordPhone, keywordEmail);
         model.addAttribute("listSup", listSupByCriteria);
         model.addAttribute(service.getSupKeywordName(), service.getSupKeyword());
         return "sup";

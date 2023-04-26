@@ -102,6 +102,7 @@ public class ResourcesService {
     }
 
     public List<Supplier> listBySupCriteria(
+            String keywordId,
             String keywordName,
             String keywordPhone,
             String keywordEmail){
@@ -119,6 +120,11 @@ public class ResourcesService {
             this.supKeywordName = "keywordAuthor";
             this.supKeyword = keywordEmail;
             return repoSup.searchByEmail(keywordEmail);
+        }
+        else if (!StringUtil.isNullOrEmpty(keywordId)){
+            this.supKeywordName = "keywordId";
+            this.supKeyword = keywordId;
+            return repoSup.searchById(keywordId);
         }
         else return repoSup.findAll();
     }

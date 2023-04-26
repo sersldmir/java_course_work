@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 
 public interface ResourceRepository extends JpaRepository<Resource, Long>{
-    @Query("SELECT r FROM Resource r JOIN Supplier s WHERE CONCAT(r.resid, '', r.name, '', r.type, '', r.quantity, '', r.cost, '', r.acdate, '', s.supid) LIKE %?1%")
+    @Query("SELECT r FROM Resource r JOIN Supplier s WHERE CONCAT(r.resid, '', r.name, '', r.type, '', r.quantity, '', r.cost, '', r.acdate, '', s.id) LIKE %?1%")
     List<Resource> search(String keyword);
 
     @Query("SELECT r FROM Resource r JOIN Supplier s WHERE r.name LIKE %?1%")

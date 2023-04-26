@@ -107,7 +107,8 @@ public class Resource {
     }
 
     public void setSupplier(Long supplier) {
-        this.supplier = (supplier);
+        this.supplier = supplier;
     }
+
 
 }
