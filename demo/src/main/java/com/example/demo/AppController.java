@@ -114,6 +114,7 @@ public class AppController {
 
         Resource resource = new Resource();
         model.addAttribute("resource", resource);
+        model.addAttribute("suppliers", service.listAllSups());
         return "new_res";
     }
     @RequestMapping("/newSup")
@@ -143,6 +144,7 @@ public class AppController {
         ModelAndView mav = new ModelAndView("edit_res");
         Resource resource = service.getRes(id);
         mav.addObject("resource", resource);
+        mav.addObject("suppliers", service.listAllSups());
         return mav;
     }
 

@@ -38,6 +38,10 @@ public class ResourcesService {
         return repoSup.findAll();
     }
 
+    public List<Supplier> listAllSups() {
+        return repoSup.findAll();
+    }
+
     private String resKeywordName;
     private String supKeywordName;
 

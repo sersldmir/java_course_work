@@ -21,5 +21,8 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long>{
     @Query("SELECT s from Supplier s WHERE s.email LIKE %?1%")
     List<Supplier> searchByEmail(String keyword);
 
+    @Query("SELECT s from Supplier s WHERE s.id != ?1")
+    List<Supplier> listAllExceptChosen(Long supid);
+
 
 }

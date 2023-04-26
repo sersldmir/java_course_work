@@ -61,7 +61,10 @@
                     </tr>
                     <tr>
                         <td>Поставщик:</td>
-                        <td><input type="text" th:field="*{supplier}" required></td>
+                        <td><select name="supplier" id="supplier" th:field="*{supplier}">
+                            <option value="0">Выберете поставщика</option>
+                            <option th:each="supplier:${suppliers}" th:value="${supplier.supid}" th:text="${supplier.name}"></option>
+                        </select></td>
                     </tr>
                     <tr>
                         <td colspan="2">
