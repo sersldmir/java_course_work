@@ -70,13 +70,14 @@ public class AppController {
 
         List<Resource> listRes = service.listAllRes(keyword);
         List<String> listSups = service.getResSupplier();
-        for (int i = 0; i < listRes.size(); i++){
-            Resource res = listRes.get(i);
-            res.setSupname(listSups.get(i));
-            listRes.set(i, res);
-        }
+        // for (int i = 0; i < listRes.size(); i++){
+        //     Resource res = listRes.get(i);
+        //     res.setSupname(listSups.get(i));
+        //     listRes.set(i, res);
+        // }
         model.addAttribute("listRes", listRes);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("listSups", listSups);
         return "index";
     }
 

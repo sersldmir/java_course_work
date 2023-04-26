@@ -48,8 +48,6 @@ public class Resource {
     @Fetch(FetchMode.JOIN)
     private Long supplier;
 
-    private String supname;
-
     protected Resource() {
     }
 
@@ -110,13 +108,4 @@ public class Resource {
     public void setSupplier(Long supplier) {
         this.supplier = supplier;
     }
-
-    public String getSupname(){
-        return supname;
-    }
-
-    public void setSupname(String supname) {
-        this.supname = supname;
-    }
-
 }

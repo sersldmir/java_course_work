@@ -112,14 +112,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="resource: ${listRes}">
+        <tr th:each="resource, itemStat: ${listRes}">
             <th scope="row" class="text-white" th:text="${resource.resid}">ID ресурса отстутсвует</th>
             <th scope="row" class="text-white" th:text="${resource.name}">Название ресурса отстутсвует</th>
             <th scope="row" class="text-white" th:text="${resource.type}">Тип ресурса отстутсвует</th>
             <th scope="row" class="text-white" th:text="${resource.quantity}">Количество гресурса отстутсвует</th>
             <th scope="row" class="text-white" th:text="${resource.cost}">Стоимость ресурса отстутсвует</th>
             <th scope="row" class="text-white" th:text="${resource.acdate}">Дата покупки ресурса отстутсвует</th>
-            <th scope="row" class="text-white" th:text="${resource.getSupname()}">Поставщик ресурса отстутсвует</th>
+            <th scope="row" class="text-white" th:text="${listSups[__${itemStat.index}__]}">Поставщик ресурса отстутсвует</th>
             <td sec:authorize="hasRole('ADMIN')">
                 <a th:href="@{'/editRes/'+${resource.resid}}"><button type="button" class="btn btn-info">Редактировать</button></a>
                 <a th:href="@{'/deleteRes/'+${resource.resid}}"><button type="button" class="btn btn-danger">Удалить</button></a>
