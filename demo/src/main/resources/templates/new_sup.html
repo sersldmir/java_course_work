@@ -35,21 +35,21 @@
     <div class="col-md-8 offset-md-4">
       <form action="#" th:action="@{/saveSup}" th:object="${supplier}" method="post">
         <table>
-          <tr>
+          <!-- <tr>
             <td>ID:</td>
-            <td><input type="text" th:field="*{supid}"></td>
-          </tr>
+            <td><input type="text" th:field="*{supid}" required></td>
+          </tr> -->
           <tr>
             <td>Название поставщика:</td>
-            <td><input type="text" th:field="*{name}"></td>
+            <td><input type="text" th:field="*{name}" required></td>
           </tr>
           <tr>
             <td>Телефон:</td>
-            <td><input type="text" th:field="*{phone}"></td>
+            <td><input type="text" th:field="*{phone}" required></td>
           </tr>
           <tr>
             <td>Почта:</td>
-            <td><input type="text" th:field="*{email}"></td>
+            <td><input type="text" th:field="*{email}" required></td>
           </tr>
           <tr>
             <td colspan="2">

@@ -35,33 +35,33 @@
         <div class="col-md-8 offset-md-4">
             <form action="#" th:action="@{/saveRes}" th:object="${resource}" method="post">
                 <table>
-                    <tr>
+                    <!-- <tr>
                         <td>ID:</td>
-                        <td><input type="text" th:field="*{resid}"></td>
-                    </tr>
+                        <td><input type="text" th:field="*{resid}" required></td>
+                    </tr> -->
                     <tr>
                         <td>Название ресурса:</td>
-                        <td><input type="text" th:field="*{name}"></td>
+                        <td><input type="text" th:field="*{name}" required></td>
                     </tr>
                     <tr>
                         <td>Тип ресурса:</td>
-                        <td><input type="text" th:field="*{type}"></td>
+                        <td><input type="text" th:field="*{type}" required></td>
                     </tr>
                     <tr>
                         <td>Количество ресурса:</td>
-                        <td><input type="text" th:field="*{quantity}"></td>
+                        <td><input type="text" th:field="*{quantity}" required></td>
                     </tr>
                     <tr>
                         <td>Стоимость ресурса:</td>
-                        <td><input type="text" th:field="*{cost}"></td>
+                        <td><input type="text" th:field="*{cost}" required></td>
                     </tr>
                     <tr>
                         <td>Дата покупки ресурса:</td>
-                        <td><input type="date" th:field="*{acdate}"></td>
+                        <td><input type="date" th:field="*{acdate}" required></td>
                     </tr>
                     <tr>
                         <td>Поставщик:</td>
-                        <td><input type="text" th:field="*{supplier}"></td>
+                        <td><input type="text" th:field="*{supplier}" required></td>
                     </tr>
                     <tr>
                         <td colspan="2">
