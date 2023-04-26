@@ -70,6 +70,7 @@ public class AppController {
         List<Resource> listRes = service.listAllRes(keyword);
         model.addAttribute("listRes", listRes);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("suppliers", service.listAllSups());
         return "index";
     }
 
