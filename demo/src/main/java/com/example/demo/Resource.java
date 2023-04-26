@@ -2,7 +2,6 @@ package com.example.demo;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -49,7 +48,6 @@ public class Resource {
     @Fetch(FetchMode.JOIN)
     private Long supplier;
 
-    @Formula("(SELECT s.name from suppliers s where s.supid = supplier)")
     private String supname;
 
     protected Resource() {
@@ -116,4 +114,9 @@ public class Resource {
     public String getSupname(){
         return supname;
     }
+
+    public void setSupname(String supname) {
+        this.supname = supname;
+    }
+
 }

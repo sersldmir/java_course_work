@@ -65,12 +65,18 @@ public class AppController {
     }
 
     @RequestMapping("/")
-    public String viewHomePage(Model model, @Param("keyword") String keyword) {
+    public String viewHomePage(Model model, @Param("keyword") String keyword){
+                                // @PathVariable(name = "supplier") Long supplier) {
 
         List<Resource> listRes = service.listAllRes(keyword);
+        List<String> listSups = service.getResSupplier();
+        for (int i = 0; i < listRes.size(); i++){
+            Resource res = listRes.get(i);
+            res.setSupname(listSups.get(i));
+            listRes.set(i, res);
+        }
         model.addAttribute("listRes", listRes);
         model.addAttribute("keyword", keyword);
-        model.addAttribute("suppliers", service.listAllSups());
         return "index";
     }
 

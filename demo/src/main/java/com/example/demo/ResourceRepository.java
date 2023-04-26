@@ -28,4 +28,9 @@ public interface ResourceRepository extends JpaRepository<Resource, Long>{
     @Query("SELECT r FROM Resource r JOIN Supplier s WHERE s.supid LIKE ?1")
     List<Resource> searchBySupplier(String keyword);
 
+    @Query("SELECT s.name FROM Supplier s, Resource r WHERE r.supplier = s.supid ORDER BY r.resid")
+    List<String> extractSupplier();
+
+
+
 }

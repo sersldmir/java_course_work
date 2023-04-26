@@ -162,5 +162,9 @@ public class ResourcesService {
         repoSup.deleteById(id);
     }
 
+    public List<String> getResSupplier(){
+        return repoRes.extractSupplier();
+    }
+
 
 }
