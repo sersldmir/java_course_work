@@ -48,7 +48,6 @@
     <table id="1" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th></th>
             <th>
             <form th:action="@{/findRes}">
                 <input type="text" name="keywordName" id="keywordName" class="input_field" size="5" th:value="${keywordName}" required/>
@@ -103,7 +102,7 @@
             </th>
         </tr>
         <tr>
-            <th scope="col">ID</th>
+            <!-- <th scope="col">ID</th> -->
             <th scope="col">Название</th>
             <th scope="col">Тип</th>
             <th scope="col">Количество</th>
@@ -114,7 +113,6 @@
         </thead>
         <tbody>
         <tr th:each="resource, itemStat: ${listRes}">
-            <th scope="row" class="text-white" th:text="${resource.resid}">ID ресурса отстутсвует</th>
             <th scope="row" class="text-white" th:text="${resource.name}">Название ресурса отстутсвует</th>
             <th scope="row" class="text-white" th:text="${resource.type}">Тип ресурса отстутсвует</th>
             <th scope="row" class="text-white" th:text="${resource.quantity}">Количество гресурса отстутсвует</th>
@@ -158,7 +156,7 @@
                 let mainTable = document.getElementById('1');
 
                 // Получаем ссылки на ячейки столбца с датами отгрузки
-                let cells = Array.from(mainTable.querySelectorAll("tbody th:nth-child(6)"));
+                let cells = Array.from(mainTable.querySelectorAll("tbody th:nth-child(5)"));
                 for (let j = 0; j < cells.length; j++) {
                     cells[j] = cells[j].textContent;
                 }
@@ -226,7 +224,7 @@
 
         // Получаем заголовок колонки "Дата покупки ресурса"
         let mainTable = document.getElementById('1')
-        const acdate = mainTable.querySelector('tr:nth-child(2) th:nth-child(6)')
+        const acdate = mainTable.querySelector('tr:nth-child(2) th:nth-child(5)')
         // Получаем все строки таблицы
         const rows = Array.from(mainTable.querySelectorAll('tbody tr'));
         // Определяем порядок сортировки (возрастание или убывание)
@@ -234,8 +232,8 @@
 
         // Сортируем строки таблицы в соответствии с выбранным порядком
         const sortedRows = rows.sort((a, b) => {
-            const aValue = new Date(a.cells[5].textContent).getTime();
-            const bValue = new Date(b.cells[5].textContent).getTime();
+            const aValue = new Date(a.cells[4].textContent).getTime();
+            const bValue = new Date(b.cells[4].textContent).getTime();
             return ascending ? aValue - bValue : bValue - aValue;
         });
 
@@ -256,7 +254,7 @@
     let table = document.getElementById('1');
 
     // Получаем ссылки на ячейки столбца с датами покупок
-    let cells = Array.from(table.querySelectorAll("tbody th:nth-child(6)"));
+    let cells = Array.from(table.querySelectorAll("tbody th:nth-child(5)"));
     for (let j = 0; j < cells.length; j++) {
         cells[j] = cells[j].textContent;
     }

@@ -35,10 +35,6 @@
         <div class="col-md-8 offset-md-4">
             <form action="#" th:action="@{/saveRes}" th:object="${resource}" method="post">
                 <table>
-                    <!-- <tr>
-                        <td>ID:</td>
-                        <td><input type="text" th:field="*{resid}" required></td>
-                    </tr> -->
                     <tr>
                         <td>Название ресурса:</td>
                         <td><input type="text" th:field="*{name}" required></td>
@@ -49,11 +45,11 @@
                     </tr>
                     <tr>
                         <td>Количество ресурса:</td>
-                        <td><input type="text" th:field="*{quantity}" required></td>
+                        <td><input type="number" th:field="*{quantity}" required></td>
                     </tr>
                     <tr>
                         <td>Стоимость ресурса:</td>
-                        <td><input type="text" th:field="*{cost}" required></td>
+                        <td><input type="number" th:field="*{cost}" required></td>
                     </tr>
                     <tr>
                         <td>Дата покупки ресурса:</td>
@@ -61,8 +57,8 @@
                     </tr>
                     <tr>
                         <td>Поставщик:</td>
-                        <td><select name="supplier" id="supplier" th:field="*{supplier}">
-                            <option value="0">Выберете поставщика</option>
+                        <td><select name="supplier" id="supplier" th:field="*{supplier}" required>
+                            <option value="">Выберете поставщика</option>
                             <option th:each="supplier:${suppliers}" th:value="${supplier.supid}" th:text="${supplier.name}"></option>
                         </select></td>
                     </tr>
@@ -73,6 +69,16 @@
                     </tr>
                 </table>
             </form>
+            <script type="text/javascript">
+
+                // проверка на пустую строку
+                function isNotEmpty(str) {
+                    return str.trim().length !== 0;
+                }
+        
+                
+        
+            </script>
         </div>
     </div>
 </div>

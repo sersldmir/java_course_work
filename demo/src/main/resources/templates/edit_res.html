@@ -35,7 +35,7 @@
         <div class="col-md-8 offset-md-4">
             <form action="#" th:action="@{/saveRes}" th:object="${resource}" method="post">
                 <table>
-                    <tr>
+                    <tr hidden>
                         <td>ID:</td>
                         <td><input type="text" th:field="*{resid}" readonly="readonly"></td>
                     </tr>
@@ -49,11 +49,11 @@
                     </tr>
                     <tr>
                         <td>Количество ресурса:</td>
-                        <td><input type="text" th:field="*{quantity}"></td>
+                        <td><input type="number" th:field="*{quantity}"></td>
                     </tr>
                     <tr>
                         <td>Стоимость ресурса:</td>
-                        <td><input type="text" th:field="*{cost}"></td>
+                        <td><input type="number" th:field="*{cost}"></td>
                     </tr>
                     <tr>
                         <td>Дата покупки ресурса:</td>

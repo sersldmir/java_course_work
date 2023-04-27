@@ -35,7 +35,7 @@
         <div class="col-md-8 offset-md-4">
             <form action="#" th:action="@{/saveSup}" th:object="${supplier}" method="post">
                 <table>
-                    <tr>
+                    <tr hidden>
                         <td>ID:</td>
                         <td><input type="text" th:field="*{supid}" readonly="readonly"></td>
                     </tr>
@@ -44,12 +44,12 @@
                         <td><input type="text" th:field="*{name}"></td>
                     </tr>
                     <tr>
-                        <td>Телефон:</td>
-                        <td><input type="text" th:field="*{phone}"></td>
+                        <td>Мобильный телефон (формат +7):</td>
+                        <td><input type="text" pattern="^\+[0-9]{11}$" th:field="*{phone}"></td>
                     </tr>
                     <tr>
                         <td>Электронная почта:</td>
-                        <td><input type="text" th:field="*{email}"></td>
+                        <td><input type="text" pattern="^[\w\-\.]+@(?:[\w-]+\.)+[\w-]{2,4}$" th:field="*{email}"></td>
                     </tr>
                     <tr>
                         <td colspan="2">

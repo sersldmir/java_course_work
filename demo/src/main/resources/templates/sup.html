@@ -48,8 +48,6 @@
         <thead>
         <tr>
             <th>
-            </th>
-            <th>
                 <form th:action="@{/findSup}">
                     <input type="text" name="keywordName" id="keywordName" class="input_field" size="5" th:value="${keywordName}" required/>
                     <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
@@ -76,7 +74,6 @@
             </th>
         </tr>
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">Название поставщика</th>
             <th scope="col">Телефон</th>
             <th scope="col">Электронная почта</th>
@@ -84,7 +81,6 @@
 <!--        </thead>-->
         <tbody>
         <tr th:each="supplier: ${listSup}">
-            <th scope="row" class="text-white" th:text="${supplier.supid}">ID отстутсвует</th>
             <th scope="row" class="text-white" th:text="${supplier.name}">Название отстутсвует</th>
             <th scope="row" class="text-white" th:text="${supplier.phone}">Телефон отстутсвует</th>
             <th scope="row" class="text-white" th:text="${supplier.email}">Электронная почта отстутсвует</th>

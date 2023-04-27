@@ -40,12 +40,12 @@
             <td><input type="text" th:field="*{name}" required></td>
           </tr>
           <tr>
-            <td>Телефон:</td>
-            <td><input type="text" th:field="*{phone}" required></td>
+            <td>Мобильный телефон (формат +7):</td>
+            <td><input type="text" pattern="^\+[0-9]{11}$" th:field="*{phone}" required></td>
           </tr>
           <tr>
             <td>Почта:</td>
-            <td><input type="text" th:field="*{email}" required></td>
+            <td><input type="text" pattern="^[\w\-\.]+@(?:[\w-]+\.)+[\w-]{2,4}$" th:field="*{email}" required></td>
           </tr>
           <tr>
             <td colspan="2">
