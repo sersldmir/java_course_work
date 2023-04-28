@@ -74,11 +74,10 @@
             </th>
         </tr>
         <tr>
-            <th scope="col">Название поставщика</th>
+            <th scope="col" onclick="sortName()">Название</th>
             <th scope="col">Телефон</th>
             <th scope="col">Электронная почта</th>
         </tr>
-<!--        </thead>-->
         <tbody>
         <tr th:each="supplier: ${listSup}">
             <th scope="row" class="text-white" th:text="${supplier.name}">Название отстутсвует</th>
@@ -108,6 +107,33 @@
                 document.write(givemecolor('#090431', 'Количество поставщиков: ' + count))
             }
             SupCount()
+        </script>
+        <script type="text/javascript">
+            function sortName(){
+                // Получаем заголовок колонки "Название"
+                let mainTable = document.getElementById('1')
+                const acdate = mainTable.querySelector('tr:nth-child(2) th:nth-child(1)')
+                // Получаем все строки таблицы
+                const rows = Array.from(mainTable.querySelectorAll('tbody tr'));
+                // Определяем порядок сортировки (возрастание или убывание)
+                const ascending = acdate.dataset.order === 'asc';
+
+                // Сортируем строки таблицы в соответствии с выбранным порядком
+                const sortedRows = rows.sort((a, b) => {
+                    const aValue = a.cells[0].textContent.trim();
+                    const bValue = b.cells[0].textContent.trim();
+                    return ascending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+                });
+
+                // Поменяем порядок строк в таблице
+                const tbody = mainTable.querySelector('tbody');
+                sortedRows.forEach(row => tbody.insertBefore(row, null));
+
+                // Изменяем порядок сортировки при повторном клике на заголовке колонки
+                acdate.dataset.order = ascending ? 'desc' : 'asc';
+                acdate.textContent = "Название " + (ascending ? "▲" : "▼");
+                acdate.style.color = '#006400'
+            }  
         </script>
     </p>
     <blockquote class="blockquote text-center" sec:authorize="hasRole('ADMIN')">
