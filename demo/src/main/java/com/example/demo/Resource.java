@@ -51,6 +51,7 @@ public class Resource {
     protected Resource() {
     }
 
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getResid() {

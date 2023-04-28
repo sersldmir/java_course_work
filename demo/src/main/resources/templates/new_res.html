@@ -37,19 +37,19 @@
                 <table>
                     <tr>
                         <td>Название ресурса:</td>
-                        <td><input type="text" th:field="*{name}" required></td>
+                        <td><input class="might_be_space" type="text" th:field="*{name}" required></td>
                     </tr>
                     <tr>
                         <td>Тип ресурса:</td>
-                        <td><input type="text" th:field="*{type}" required></td>
+                        <td><input class="might_be_space" type="text" th:field="*{type}" required></td>
                     </tr>
                     <tr>
                         <td>Количество ресурса:</td>
-                        <td><input type="number" th:field="*{quantity}" required></td>
+                        <td><input class="might_be_space" type="number" th:field="*{quantity}" required></td>
                     </tr>
                     <tr>
                         <td>Стоимость ресурса:</td>
-                        <td><input type="number" th:field="*{cost}" required></td>
+                        <td><input class="might_be_space" type="number" th:field="*{cost}" required></td>
                     </tr>
                     <tr>
                         <td>Дата покупки ресурса:</td>
@@ -72,11 +72,28 @@
             <script type="text/javascript">
 
                 // проверка на пустую строку
-                function isNotEmpty(str) {
-                    return str.trim().length !== 0;
+                function isEmpty(str_arg) {
+                    return str_arg.toString().trim().length == 0;
                 }
-        
                 
+                // добавление реакции на пустую строку
+                function checkOnlySpaces(){
+                    const might_space = document.getElementsByClassName("might_be_space");
+
+                    for (let i = 0; i < might_space.length; i++){
+                        might_space[i].addEventListener("input", (event) =>
+                        {
+                            if (isEmpty(might_space[i].value)){
+                            might_space[i].setCustomValidity("Empty field!");
+                            }
+                            else{
+                            might_space[i].setCustomValidity("");
+                            }
+                        });
+                    }
+                }
+
+                checkOnlySpaces();
         
             </script>
         </div>

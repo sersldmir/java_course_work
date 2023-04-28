@@ -41,15 +41,15 @@
                     </tr>
                     <tr>
                         <td>Название поставщика:</td>
-                        <td><input type="text" th:field="*{name}"></td>
+                        <td><input class="might_be_space" type="text" th:field="*{name}"></td>
                     </tr>
                     <tr>
                         <td>Мобильный телефон (формат +7):</td>
-                        <td><input type="text" pattern="^\+[0-9]{11}$" th:field="*{phone}"></td>
+                        <td><input class="might_be_space" type="text" pattern="^\+[0-9]{11}$" th:field="*{phone}"></td>
                     </tr>
                     <tr>
                         <td>Электронная почта:</td>
-                        <td><input type="text" pattern="^[\w\-\.]+@(?:[\w-]+\.)+[\w-]{2,4}$" th:field="*{email}"></td>
+                        <td><input class="might_be_space" type="text" pattern="^[\w\-\.]+@(?:[\w-]+\.)+[\w-]{2,4}$" th:field="*{email}"></td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -58,6 +58,33 @@
                     </tr>
                 </table>
             </form>
+            <script type="text/javascript">
+
+                // проверка на пустую строку
+                function isEmpty(str_arg) {
+                    return str_arg.toString().trim().length == 0;
+                }
+                
+                // добавление реакции на пустую строку
+                function checkOnlySpaces(){
+                    const might_space = document.getElementsByClassName("might_be_space");
+
+                    for (let i = 0; i < might_space.length; i++){
+                        might_space[i].addEventListener("input", (event) =>
+                        {
+                            if (isEmpty(might_space[i].value)){
+                            might_space[i].setCustomValidity("Empty field!");
+                            }
+                            else{
+                            might_space[i].setCustomValidity("");
+                            }
+                        });
+                    }
+                }
+
+                checkOnlySpaces();
+        
+            </script>
         </div>
     </div>
 </div>
