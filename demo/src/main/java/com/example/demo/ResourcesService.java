@@ -135,7 +135,7 @@ public class ResourcesService {
     public String addUser(UserInfo userInfo){
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
         userRepo.save(userInfo);
-        return "user added to system";
+        return "User added to system!";
     }
 
     public void saveRes(Resource cargo) {

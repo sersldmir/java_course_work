@@ -80,14 +80,6 @@
       .txt_field input:valid ~ span::before{
         width: 100%;
       }
-      .pass{
-        margin: -5px 0 20px 5px;
-        color: #a6a6a6;
-        cursor: pointer;
-      }
-      .pass:hover{
-        text-decoration: underline;
-      }
       input[type="submit"]{
         width: 100%;
         height: 50px;
@@ -133,10 +125,9 @@
           <span></span>
           <label>Пароль</label>
         </div>
-        <div class="pass"><a href="https://theslide.ru/img/thumbs/f4cc31d8eb022020275a124610949f65-800x.jpg" style="color:inherit;">Забыли пароль?</a></div>
         <input type="submit" value="Войти">
         <div class="signup_link">
-          Нет аккаунта? <a th:href="@{/reg}">Зарегистрироваться</a>
+        <a th:href="@{/reg}">Зарегистрироваться</a>
         </div>
       </form>
     </div>
