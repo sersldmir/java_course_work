@@ -9,7 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- <link rel="stylesheet" th:href="@{/css/style.css}"> -->
+    <style>
+            #form-container {
+            width: 400px;
+            height: 300px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            padding: 20px;
+            transform: translate(150%);
+            }
+    </style>
 </head>
 <body>
 <div class="bg-image"
@@ -24,6 +34,8 @@
                 <li class="nav-item"><a th:href="@{/sup}" class="nav-link" aria-current="page" style="color: #e9f4fb">Поставщики</a></li>
                 <li class="nav-item"><a th:href="@{/}" class="nav-link" style="color: #e9f4fb">Ресурсы</a></li>
                 <li class="nav-item"><a th:href="@{/about}" class="nav-link" style="color: #e9f4fb">Об авторе</a></li>
+                <li class="nav-item"><button id="show-search-button">Поиск</button></li>
+                <li class="nav-item"><button style="display: none;" id="show-clear-button" onclick="clearSearch()">Очистить</button></li>
                 <li class="nav-item"><a th:href="@{/reg_admin}" class="nav-link active" style="color: #e9f4fb" sec:authorize="hasRole('ADMIN')">Зарегистрировать пользователя</a></li>
                 <li class="nav-item"><a th:href="@{/logout}" class="nav-link active" style="color: #e9f4fb; background-color: #ed0606">Выйти</a></li>
                 <li class="nav-item"><a class="nav-link" style="color: #e9f4fb;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -33,51 +45,80 @@
             </ul>
         </header>
     </div>
-    <div class="row">
-        <div class="col-md-8 offset-md-4">
-            <h4>Поиск поставщика по нескольким критериям сразу</h4>
-            <form th:action="@{/sup}">
-                <input type="text" name="keyword" id="keyword" size="70" class="input_field" th:value="${keyword}" required/>
-                <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
-                <input type="button" class="btn btn-warning btn-sm" value="Очистить" id="btnClear1"
-                       onclick="clearSearch()"/>
-            </form>
-        </div>
+    <script>
+        // Get the current URL
+        var currentUrl = window.location.href;
+
+        // Check if the URL contains the word "find"
+        if (currentUrl.includes("find") && document.getElementById("show-clear-button").style.display == 'none') {
+        // Show the button
+        document.getElementById("show-clear-button").style.display = "block";
+        }
+    </script>
+    <div id="form-container" style="display: none;">
+        <h2>Поиск по параметрам</h2>
+        <table>
+            <tr>
+                <td>
+                    <label for="keywordName">Название</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form th:action="@{/findSup}">
+                        <input type="text" name="keywordName" id="keywordName" class="input_field" size="27" th:value="${keywordName}" required/>
+                        <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="keywordPhone">Телефон</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form th:action="@{/findSup}">
+                        <input type="text" name="keywordPhone" id="keywordPhone" class="input_field" size="27" th:value="${keywordPhone}" required/>
+                        <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="keywordEmail">Почта</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form th:action="@{/findSup}">
+                        <input type="text" name="keywordEmail" id="keywordEmail" class="input_field" size="27" th:value="${keywordEmail}" required/>
+                        <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
     </div>
+    <script>
+        const showFormButton = document.getElementById('show-search-button');
+        const formContainer = document.getElementById('form-container');
+
+        showFormButton.addEventListener('click', function() {
+            if (formContainer.style.display === 'block') {
+                formContainer.style.display = 'none';
+            } else {
+                formContainer.style.display = 'block';
+            }
+        });
+    </script>
     <table id="1" class="table table-striped table-hover text-center">
         <thead>
-        <tr>
-            <th>
-                <form th:action="@{/findSup}">
-                    <input type="text" name="keywordName" id="keywordName" class="input_field" size="5" th:value="${keywordName}" required/>
-                    <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
-                    <input type="button" class="btn btn-warning btn-sm" value="Очистить" id="btnClear2"
-                           onclick="clearSearch()"/>
-                </form>
-            </th>
-            <th>
-                <form th:action="@{/findSup}">
-                    <input type="text" name="keywordPhone" id="keywordPhone" class="input_field" size="5" th:value="${keywordPhone}" required/>
-                    <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
-                    <input type="button" class="btn btn-warning btn-sm" value="Очистить" id="btnClear3"
-                           onclick="clearSearch()"/>
-                </form>
-            </th>
-
-            <th>
-                <form th:action="@{/findSup}">
-                    <input type="text" name="keywordEmail" id="keywordEmail" class="input_field" size="5" th:value="${keywordEmail}" required/>
-                    <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
-                    <input type="button" class="btn btn-warning btn-sm" value="Очистить" id="btnClear4"
-                           onclick="clearSearch()"/>
-                </form>
-            </th>
-        </tr>
         <tr>
             <th scope="col" onclick="sortName()">Название</th>
             <th scope="col">Телефон</th>
             <th scope="col">Электронная почта</th>
         </tr>
+        </thead>
         <tbody>
         <tr th:each="supplier: ${listSup}">
             <th scope="row" class="text-white" th:text="${supplier.name}">Название отстутсвует</th>
@@ -110,9 +151,10 @@
         </script>
         <script type="text/javascript">
             function sortName(){
+
                 // Получаем заголовок колонки "Название"
                 let mainTable = document.getElementById('1')
-                const acdate = mainTable.querySelector('tr:nth-child(2) th:nth-child(1)')
+                const acdate = mainTable.querySelector('tr:nth-child(1) th:nth-child(1)')
                 // Получаем все строки таблицы
                 const rows = Array.from(mainTable.querySelectorAll('tbody tr'));
                 // Определяем порядок сортировки (возрастание или убывание)
@@ -133,6 +175,11 @@
                 acdate.dataset.order = ascending ? 'desc' : 'asc';
                 acdate.textContent = "Название " + (ascending ? "▲" : "▼");
                 acdate.style.color = '#006400'
+
+                // Чтобы появилась кнопка очищения 
+                if (document.getElementById("show-clear-button").style.display == 'none') {
+                    document.getElementById("show-clear-button").style.display = "block";
+                }
             }  
         </script>
     </p>
