@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="bg-image"
-     style="background-image: url('https://gradienthunt.com/gradients-images/1200.jpg'); height: 100vh; overflow: auto">
+     style="background-image: linear-gradient( 111.9deg,  rgba(113,8,139,1) 61.2%, rgba(9,7,7,1) 82.9% ); height: 100vh; overflow-x: hidden">
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a  class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
@@ -20,7 +20,8 @@
             </a>
             <ul class="nav nav-pills">
                 <li class="nav-item"><a th:href="@{/sup}" class="nav-link" aria-current="page" style="color: #e9f4fb">Поставщики</a></li>
-                <li class="nav-item"><a th:href="@{/}" class="nav-link" style="color: #e9f4fb">Ресурсы</a></li>
+                <li class="nav-item"><a th:href="@{/}" class="nav-link" style="color: #e9f4fb; background-color:orchid;">Ресурсы</a></li>
+                <li class="nav-item"><a th:href="@{/about}" class="nav-link" style="color: #e9f4fb">Об авторе</a></li>
                 <li class="nav-item"><a th:href="@{/reg_admin}" class="nav-link active" style="color: #e9f4fb" sec:authorize="hasRole('ADMIN')">Зарегистрировать пользователя</a></li>
                 <li class="nav-item"><a th:href="@{/logout}" class="nav-link active" style="color: #e9f4fb; background-color: #ed0606">Выйти</a></li>
                 <li class="nav-item"><a class="nav-link" style="color: #e9f4fb;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -30,44 +31,54 @@
             </ul>
         </header>
     </div>
-    <blockquote class="blockquote text-center"><h1>Добавить ресурс</h1></blockquote>
+    <blockquote class="blockquote text-center"><h1 style="color: #e9f4fb;">Добавить ресурс</h1></blockquote>
     <div class="row">
         <div class="col-md-8 offset-md-4">
             <form action="#" th:action="@{/saveRes}" th:object="${resource}" method="post">
                 <table>
                     <tr>
-                        <td>Название ресурса:</td>
-                        <td><input class="might_be_space" type="text" th:field="*{name}" required></td>
+                        <div class="form-group" style="width: 50%;">
+                        <label for="rname" style="color: #e9f4fb;">Название</label>
+                        <input class="might_be_space form-control" id="rname" type="text" th:field="*{name}" required>
+                        </div>
                     </tr>
                     <tr>
-                        <td>Тип ресурса:</td>
-                        <td><input class="might_be_space" type="text" th:field="*{type}" required></td>
+                        <div class="form-group" style="width: 50%; margin-top: 1%;">
+                        <label for="rtype" style="color: #e9f4fb;">Тип</label>
+                        <input class="might_be_space form-control" id="rtype" type="text" th:field="*{type}" required>
+                        </div>
                     </tr>
                     <tr>
-                        <td>Количество ресурса:</td>
-                        <td><input class="might_be_space" type="number" th:field="*{quantity}" required></td>
+                        <div class="form-group" style="width: 50%; margin-top: 1%;">
+                        <label for="rquantity" style="color: #e9f4fb;">Количество</label>
+                        <input class="might_be_space form-control" id="rquantity" type="number" th:field="*{quantity}" required>
+                        </div>
                     </tr>
                     <tr>
-                        <td>Стоимость ресурса:</td>
-                        <td><input class="might_be_space" type="number" th:field="*{cost}" required></td>
+                        <div class="form-group" style="width: 50%; margin-top: 1%;">
+                        <label for="rprice" style="color: #e9f4fb;">Стоимость</label>
+                        <input class="might_be_space form-control" id="rprice" type="number" th:field="*{cost}" required>
+                        </div>
                     </tr>
                     <tr>
-                        <td>Дата покупки ресурса:</td>
-                        <td><input type="date" th:field="*{acdate}" required></td>
+                        <div class="form-group" style="width: 50%; margin-top: 1%;">
+                        <label for="rdate" style="color: #e9f4fb;">Дата покупки</label>
+                        <input type="date" class="form-control" id="rdate" th:field="*{acdate}" required>
+                        </div>
                     </tr>
                     <tr>
-                        <td>Поставщик:</td>
-                        <td><select name="supplier" id="supplier" th:field="*{supplier}" required>
+                        <div class="form-group" style="width: 50%; margin-top: 1%;">
+                        <label for="supplier" style="color: #e9f4fb;">Поставщик</label>
+                        <select name="supplier" class="form-control" id="supplier" th:field="*{supplier}" required>
                             <option value="">Выберете поставщика</option>
                             <option th:each="supplier:${suppliers}" th:value="${supplier.supid}" th:text="${supplier.name}"></option>
-                        </select></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Добавить</button>
-                        </td>
+                        </select>
+                        </div>
                     </tr>
                 </table>
+                <div style="margin-top: 3%; margin-left: 20%;">
+                    <button type="submit" class="btn btn-primary btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off">Добавить</button>
+                </div>
             </form>
             <script type="text/javascript">
 

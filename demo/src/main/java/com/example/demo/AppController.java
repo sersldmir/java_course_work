@@ -95,7 +95,7 @@ public class AppController {
     }
 
     @RequestMapping("/findRes")
-    public String searchCargo(Model model, @Param("keywordName") String keywordName,
+    public String searchRes(Model model, @Param("keywordName") String keywordName,
                               @Param("keywordType") String keywordType,
                               @Param("keywordQuantity") String keywordQuantity,
                               @Param("keywordCost") String keywordCost,
@@ -112,7 +112,7 @@ public class AppController {
     }
 
     @RequestMapping("/findSup")
-    public String searchRecord(Model model, @Param("keywordName") String keywordName,
+    public String searchSup(Model model, @Param("keywordName") String keywordName,
                                @Param("keywordPhone") String keywordPhone,
                                @Param("keywordEmail") String keywordEmail,
                                @Param("keywordId") String keywordId){
@@ -135,7 +135,7 @@ public class AppController {
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @RequestMapping("/newSup")
-    public String showNewRecordForm(Model model){
+    public String showNewSupForm(Model model){
 
         Supplier supplier = new Supplier();
         model.addAttribute("supplier", supplier);

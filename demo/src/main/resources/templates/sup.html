@@ -3,39 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Система работы с ресурсами</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" th:href="@{/css/style.css}"> -->
     <style>
             #form-container {
             width: 400px;
-            height: 300px;
+            height: 250px;
             background-color: #f2f2f2;
             border: 1px solid #ccc;
             padding: 20px;
-            transform: translate(150%);
+            transform: translate(145%);
             }
     </style>
 </head>
 <body>
-<div class="bg-image"
-     style="background-image: url('https://gradienthunt.com/gradients-images/1200.jpg'); height: 100vh; overflow-x: hidden">
+<div class="bg-image" style="background-image: linear-gradient( 111.9deg,  rgba(113,8,139,1) 61.2%, rgba(9,7,7,1) 82.9% ); height: 100vh; overflow-x: hidden">
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a  class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                 <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                <span class="fs-4" style="color: #e9f4fb">Поставщики</span>
+                <span class="fs-4" style="color: #e9f4fb">Система работы с ресурсами</span>
             </a>
             <ul class="nav nav-pills">
-                <li class="nav-item"><a th:href="@{/sup}" class="nav-link" aria-current="page" style="color: #e9f4fb">Поставщики</a></li>
+                <li class="nav-item"><a th:href="@{/sup}" class="nav-link" aria-current="page" style="color: #e9f4fb; background-color:orchid;">Поставщики</a></li>
                 <li class="nav-item"><a th:href="@{/}" class="nav-link" style="color: #e9f4fb">Ресурсы</a></li>
                 <li class="nav-item"><a th:href="@{/about}" class="nav-link" style="color: #e9f4fb">Об авторе</a></li>
-                <li class="nav-item"><button id="show-search-button">Поиск</button></li>
-                <li class="nav-item"><button style="display: none;" id="show-clear-button" onclick="clearSearch()">Очистить</button></li>
                 <li class="nav-item"><a th:href="@{/reg_admin}" class="nav-link active" style="color: #e9f4fb" sec:authorize="hasRole('ADMIN')">Зарегистрировать пользователя</a></li>
                 <li class="nav-item"><a th:href="@{/logout}" class="nav-link active" style="color: #e9f4fb; background-color: #ed0606">Выйти</a></li>
                 <li class="nav-item"><a class="nav-link" style="color: #e9f4fb;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -45,18 +41,20 @@
             </ul>
         </header>
     </div>
-    <script>
-        // Get the current URL
-        var currentUrl = window.location.href;
-
-        // Check if the URL contains the word "find"
-        if (currentUrl.includes("find") && document.getElementById("show-clear-button").style.display == 'none') {
-        // Show the button
-        document.getElementById("show-clear-button").style.display = "block";
-        }
-    </script>
-    <div id="form-container" style="display: none;">
-        <h2>Поиск по параметрам</h2>
+    <h1 style="color: #e9f4fb; text-align: center;">Поставщики</h1>
+    <div class="interactive-buttons">
+        <table style="margin-left: auto; margin-right: auto;">
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-secondary btn-lg" id="show-search-button">Поиск записей</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-lg" style="display: none;" id="show-clear-button" onclick="clearSearch()">Очистить</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="form-container" style="display: none; margin-top: 2%;">
         <table>
             <tr>
                 <td>
@@ -111,12 +109,13 @@
             }
         });
     </script>
-    <table id="1" class="table table-striped table-hover text-center">
+    <table id="1" class="table table-dark table-striped table-hover" style="margin-top: 2%;">
         <thead>
         <tr>
             <th scope="col" onclick="sortName()">Название</th>
             <th scope="col">Телефон</th>
             <th scope="col">Электронная почта</th>
+            <th scope="col" sec:authorize="hasRole('ADMIN')">Действие</th>
         </tr>
         </thead>
         <tbody>
@@ -126,13 +125,20 @@
             <th scope="row" class="text-white" th:text="${supplier.email}">Электронная почта отстутсвует</th>
 
             <td sec:authorize="hasRole('ADMIN')">
-                <a th:href="@{'/editSup/'+${supplier.supid}}"><button type="button" class="btn btn-info">Редактировать</button></a>
-                <a th:href="@{'/deleteSup/'+${supplier.supid}}"><button type="button" class="btn btn-danger">Удалить</button></a>
+                <a th:href="@{'/editSup/'+${supplier.supid}}"><button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button></a>
+                <a th:href="@{'/deleteSup/'+${supplier.supid}}"><button type="button" class="btn btn-danger"><i class="fa fa-trash-alt"></i></button></a>
             </td>
         </tr>
         </tbody>
     </table>
-    <p class="text-green">
+    <blockquote class="blockquote text-center" sec:authorize="hasRole('ADMIN')">
+        <a href="/newSup">
+            <button type="button" class="btn btn-primary" data-togge="button" aria-pressed="false" autocomplete="off">
+                Добавить поставщика
+            </button>
+        </a>
+    </blockquote>
+    <table id="3" style="margin-left: auto; margin-right: auto;">
         <script type="text/javascript">
             function clearSearch() {
                 window.location = "[[@{/sup}]]";
@@ -142,10 +148,24 @@
                 {
                     return '<span style="color:'+thecolor+'">'+thetext+'</span>';
                 }
-                let table = document.getElementById('1')
-                let tBody = table.querySelector('tbody')
-                const count = tBody.querySelectorAll('tr').length
-                document.write(givemecolor('#090431', 'Количество поставщиков: ' + count))
+                let table = document.getElementById('1');
+                let tBody = table.querySelector('tbody');
+                const count = tBody.querySelectorAll('tr').length;
+                let resQuantity = document.createElement('table')
+                resQuantity.classList.add('table', 'table-dark', 'table-striped', 'table-hover');
+                let resbody = document.createElement('tbody')
+                resQuantity.appendChild(resbody)
+                let restr = document.createElement('tr')
+                resbody.appendChild(restr)
+                let newCell = document.createElement('td')
+                restr.appendChild(newCell)
+                newCell.colSpan = 7;
+                newCell.style.textAlign = 'center';
+                newCell.style.fontWeight = 'bolder';
+                newCell.style.fontStyle = 'italic';
+                newCell.innerHTML = givemecolor('#FFFFFF', 'Количество контактов поставщиков: ' + count);
+                let t = document.getElementById('3');
+                t.appendChild(resQuantity);
             }
             SupCount()
         </script>
@@ -174,7 +194,7 @@
                 // Изменяем порядок сортировки при повторном клике на заголовке колонки
                 acdate.dataset.order = ascending ? 'desc' : 'asc';
                 acdate.textContent = "Название " + (ascending ? "▲" : "▼");
-                acdate.style.color = '#006400'
+                acdate.style.color = '#FFFFFF'
 
                 // Чтобы появилась кнопка очищения 
                 if (document.getElementById("show-clear-button").style.display == 'none') {
@@ -182,14 +202,17 @@
                 }
             }  
         </script>
-    </p>
-    <blockquote class="blockquote text-center" sec:authorize="hasRole('ADMIN')">
-        <a href="/newSup">
-            <button type="button" class="btn btn-primary" data-togge="button" aria-pressed="false" autocomplete="off">
-                Добавить поставщика
-            </button>
-        </a>
-    </blockquote>
+    </table>
 </div>
+<script>
+    // Get the current URL
+    var currentUrl = window.location.href;
+
+    // Check if the URL contains the word "find"
+    if (currentUrl.includes("find") && document.getElementById("show-clear-button").style.display == 'none') {
+    // Show the button
+    document.getElementById("show-clear-button").style.display = "block";
+    }
+</script>
 </body>
 </html>

@@ -11,16 +11,17 @@
 </head>
 <body>
 <div class="bg-image"
-     style="background-image: url('https://gradienthunt.com/gradients-images/1200.jpg'); height: 100vh; overflow: auto">
+     style="background-image: linear-gradient( 111.9deg,  rgba(113,8,139,1) 61.2%, rgba(9,7,7,1) 82.9% ); height: 100vh; overflow-x: hidden">
   <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a  class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4" style="color: #e9f4fb">Поставщики</span>
+        <span class="fs-4" style="color: #e9f4fb">Система работы с ресурсами</span>
       </a>
       <ul class="nav nav-pills">
-        <li class="nav-item"><a th:href="@{/sup}" class="nav-link" aria-current="page" style="color: #e9f4fb">Поставщики</a></li>
+        <li class="nav-item"><a th:href="@{/sup}" class="nav-link" aria-current="page" style="color: #e9f4fb; background-color:orchid;">Поставщики</a></li>
         <li class="nav-item"><a th:href="@{/}" class="nav-link" style="color: #e9f4fb">Ресурсы</a></li>
+        <li class="nav-item"><a th:href="@{/about}" class="nav-link" style="color: #e9f4fb">Об авторе</a></li>
         <li class="nav-item"><a th:href="@{/reg_admin}" class="nav-link active" style="color: #e9f4fb" sec:authorize="hasRole('ADMIN')">Зарегистрировать пользователя</a></li>
         <li class="nav-item"><a th:href="@{/logout}" class="nav-link active" style="color: #e9f4fb; background-color: #ed0606">Выйти</a></li>
         <li class="nav-item"><a class="nav-link" style="color: #e9f4fb;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -30,29 +31,33 @@
       </ul>
     </header>
   </div>
-  <blockquote class="blockquote text-center"><h1>Добавить поставщика</h1></blockquote>
+  <blockquote class="blockquote text-center"><h1 style="color: #e9f4fb;">Добавить поставщика</h1></blockquote>
   <div class="row">
     <div class="col-md-8 offset-md-4">
       <form action="#" th:action="@{/saveSup}" th:object="${supplier}" method="post">
         <table>
           <tr>
-            <td>Название поставщика:</td>
-            <td><input class="might_be_space" type="text" th:field="*{name}" required></td>
+            <div class="form-group" style="width: 50%;">
+            <label for="sname" style="color: #e9f4fb;">Название поставщика:</label>
+            <input class="might_be_space form-control" id="sname" type="text" th:field="*{name}" required>
+            </div>
           </tr>
           <tr>
-            <td>Мобильный телефон (формат +7):</td>
-            <td><input class="might_be_space" type="text" pattern="^\+[0-9]{11}$" th:field="*{phone}" required></td>
+            <div class="form-group" style="width: 50%; margin-top: 1%;">
+            <label for="sphone" style="color: #e9f4fb;">Мобильный телефон:</label>
+            <input class="might_be_space form-control" id="sphone" type="text" pattern="^\+[0-9]{11}$" th:field="*{phone}" required placeholder="+79997778811">
+            </div>
           </tr>
           <tr>
-            <td>Почта:</td>
-            <td><input class="might_be_space" type="text" pattern="^[\w\-\.]+@(?:[\w-]+\.)+[\w-]{2,4}$" th:field="*{email}" required></td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Добавить</button>
-            </td>
+            <div class="form-group" style="width: 50%; margin-top: 1%;">
+            <label for="smail" style="color: #e9f4fb;">Электронная почта:</label>
+            <input class="might_be_space form-control" type="text" pattern="^[\w\-\.]+@(?:[\w-]+\.)+[\w-]{2,4}$" th:field="*{email}" id="smail" required placeholder="ex.mm@yobr.co">
+            </div>
           </tr>
         </table>
+        <div style="margin-top: 3%; margin-left: 20%;">
+          <button type="submit" class="btn btn-primary btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off">Добавить</button>
+        </div>
       </form>
       <script type="text/javascript">
 

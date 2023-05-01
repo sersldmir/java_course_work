@@ -16,7 +16,7 @@
     body{
       margin: 0;
       padding: 0;
-      background: linear-gradient(120deg,#2980b9, #8e44ad);
+      background: linear-gradient( 111.9deg,  rgba(113,8,139,1) 61.2%, rgba(9,7,7,1) 82.9% );
       height: 100vh;
       overflow: hidden;
     }
@@ -26,7 +26,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 400px;
-      background: white;
+      background: black;
       border-radius: 10px;
       box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
     }
@@ -109,15 +109,15 @@
 </head>
 <body>
 <div class="center">
-  <h1>Регистрация</h1>
+  <h1 style="color: #e9f4fb;">Регистрация</h1>
   <form th:action="@{/reg_admin}" method="post">
     <div class="txt_field">
-      <input type="text" id="name" name="name" placeholder="Имя пользователя" required>
+      <input type="text" style="color: #e9f4fb;" id="name" name="name" placeholder="Имя пользователя" required>
       <span></span>
       <label>Имя пользователя</label>
     </div>
     <div class="txt_field">
-      <input type="password" id="password" name="password" placeholder="Пароль" required>
+      <input type="password" style="color: #e9f4fb;" id="password" name="password" placeholder="Пароль" required>
       <span></span>
       <label>Пароль</label>
     </div>
@@ -128,10 +128,7 @@
         <option value="ROLE_USER">Стандартная</option>
       </select>
     </div>
-    <input type="submit" value="Зарегистрировать">
-    <div>
-      <a style="color: white">Zа наших!</a>
-    </div>
+    <input type="submit" value="Зарегистрировать" style="margin-bottom: 5%;">
   </form>
 </div>
 
