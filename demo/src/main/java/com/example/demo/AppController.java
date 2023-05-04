@@ -48,7 +48,6 @@ public class AppController {
         return "about_page";
     }
     
-
     /**
      * Эта функция возвращает страницу входа.
      * 

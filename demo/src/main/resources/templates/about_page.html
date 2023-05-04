@@ -97,7 +97,7 @@
                 <p style="font-size: large;">
                     Я Миронов Сергей Игоревич. Студент Финансового университета 
                     при Правительстве РФ. Учусь на 2-ом курсе прикладной информатики
-                    в группе ПИ21-3
+                    в группе ПИ21-3.
                 </p>
             </div>
             <div id="item-1">
@@ -108,5 +108,15 @@
             <div id="item-2"><img style="height: 792px; width: 773px;" src="https://sun1-93.userapi.com/impg/bQxLrhShQAn9_8qncUFtx5QCsu4x2yIZ_pmLRA/HTu3DD9a6aY.jpg?size=720x1080&quality=96&sign=8a2c4c5cba0bdc23409ef993cb99144d&type=album" alt="My pic"></div>
           </div>
     </div>
+    <script>
+        let curUrl = new URL(window.location.href);
+        let javadocUrl = curUrl.origin + "/docs/index.html";
+        let divCon = document.getElementById("item-0");
+        let javadocA = document.createElement("a");
+        javadocA.href = javadocUrl;
+        let aLinkText = document.createTextNode("Документация");
+        javadocA.appendChild(aLinkText);
+        divCon.appendChild(javadocA);
+    </script>
 </body>
 </html>
