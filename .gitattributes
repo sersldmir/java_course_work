@@ -1,5 +1,5 @@
 demo/*.mvn linguist-language=Java
-demo/pom.xml linguist-language=Maven POM
+demo/pom.xml linguist-vendored
 demo/*.html linguist-language=HTML
 demo/*.css linguist-language=CSS
 demo/*.java linguist-language=Java
