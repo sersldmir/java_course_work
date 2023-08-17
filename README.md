@@ -1,2 +1,2 @@
 # java_course_work
-Spring Boot web app
+Trivial Spring Boot web app. Was part of my curriculum
