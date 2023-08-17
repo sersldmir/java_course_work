@@ -1,6 +1,6 @@
 demo/*.mvn linguist-language=Java
 demo/pom.xml linguist-vendored
-demo/*.html linguist-language=HTML
-demo/*.css linguist-language=CSS
-demo/*.java linguist-language=Java
-demo/*.class linguist-language=Java
+demo/src/main/java/com/example/demo/*.java linguist-language=Java
+demo/src/main/java/com/example/demo/security/*.java linguist-language=Java
+demo/src/main/resources/templates/*.html linguist-language=HTML
+demo/src/main/resources/templates/error/*.html linguist-language=HTML
