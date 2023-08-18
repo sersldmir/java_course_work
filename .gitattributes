@@ -1,3 +1,5 @@
+demo/** -linguist-vendored
+
 demo/*.mvn linguist-language=Java
 demo/pom.xml linguist-vendored
 demo/src/main/java/com/example/demo/*.java linguist-language=Java
